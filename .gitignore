@@ -22,3 +22,21 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+# Java/Spring
+/target/
+/build/
+/**/build/
+/.out/
+/.gradle/
+/.classpath
+.project
+.settings/
+
+# Resources with secrets
+/back/src/main/resources/application.yml
+/back/build/
+/**/application.yml # (원하면 더 광범위하게)
+
+# Node/React
+/front/node_modules/
+/front/build/
