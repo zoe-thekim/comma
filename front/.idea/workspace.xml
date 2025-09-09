@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="59609610-f9d1-4f6b-9705-1f501a69ce96" name="Changes" comment="FEAT: node.js 설치&#10;1. node.js 설치&#10;- 웹앱 동시 개발 위해 설치&#10;- nodemon 설치로 속도 개선">
+      <change afterPath="$PROJECT_DIR$/../back/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.idea/sonarlint/issuestore/c/8/c8c2fb7d269e355b8398e4da3ec09d8a6776c6b4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.idea/sonarlint/issuestore/d/6/d66f399012e840edcbbf9f0d9c1980418df0ee66" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/build/classes/java/main/com/zoe/web/Config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../back/build/classes/java/main/com/zoe/web/Config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/build/resources/main/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/build/tmp/compileJava/compileTransaction/stash-dir/MemberController.class.uniqueId4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/build/tmp/compileJava/compileTransaction/stash-dir/MemberService.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/build/tmp/compileJava/compileTransaction/stash-dir/SecurityConfig.class.uniqueId5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/src/main/java/com/zoe/web/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/src/main/java/com/zoe/web/Config/SecurityConfig.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="31jbdz0uyn0WTL8BevVwiOWHpye" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="flattenModules" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/varm/dev/comma/front/my-app/src/Assets/Fonts&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my-app/src/Assets/Fonts" />
+      <recent name="$PROJECT_DIR$/my-app/public/fonts" />
+      <recent name="$PROJECT_DIR$/my-app/src/Assets/Img" />
+      <recent name="$PROJECT_DIR$/my-app/src/Member" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my-app/public/img" />
+      <recent name="$PROJECT_DIR$/my-app/src/Layouts" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="nodemon" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/my-app/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="nodemon" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.nodemon" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="59609610-f9d1-4f6b-9705-1f501a69ce96" name="Changes" comment="" />
+      <created>1756040519903</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1756040519903</updated>
+      <workItem from="1756040521114" duration="8616000" />
+      <workItem from="1756126365867" duration="2592000" />
+      <workItem from="1756251205531" duration="593000" />
+      <workItem from="1756388947499" duration="5317000" />
+      <workItem from="1756613046685" duration="1628000" />
+      <workItem from="1756636190259" duration="20047000" />
+      <workItem from="1756784009098" duration="19987000" />
+      <workItem from="1757239189693" duration="11287000" />
+    </task>
+    <task id="LOCAL-00001" summary="FEAT: node.js 설치&#10;1. node.js 설치&#10;- 웹앱 동시 개발 위해 설치&#10;- nodemon 설치로 속도 개선">
+      <created>1756392513868</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1756392513868</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="FEAT: node.js 설치&#10;1. node.js 설치&#10;- 웹앱 동시 개발 위해 설치&#10;- nodemon 설치로 속도 개선" />
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT: node.js 설치&#10;1. node.js 설치&#10;- 웹앱 동시 개발 위해 설치&#10;- nodemon 설치로 속도 개선" />
+  </component>
+</project>
