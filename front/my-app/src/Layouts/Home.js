@@ -31,15 +31,38 @@ function Home() {
     const { user, loading, logout } = useAuth();
     const navigate = useNavigate();
 
-    if(loading) return <p>로딩중</p>;
-
     return(
-        <div>
-            <h3>Home</h3>
+        <div className={"pb-20 bg-neutral-100"}>
+            {/* HERO SECTION */}
+            <section className={"grid gap-10 py-12 m-8 md:grid-cols-2 md:items-center"}>
+                <div className={"order-2 md:order-1"}>
+                    <h1 className={"text-4xl font-extrabold tracking-tight sm:text-5xl"}>
+                        Building Something Extraordinary
+                    </h1>
+                </div>
+                <div className="order-1 md:order-2">
+                    <div className={"rounded-3xl p-8 bg-gray-100 m-5 shadow-[10px_10px_20px_#d1d9e6,-10px_-10px_20px_#ffffff] rounded-3xl"}>
+                        <div className="grid gap-4">
+                            <div className="grid gap-2">
+                                <div className="h-10 rounded-2xl bg-background shadow-neo" />
+                                <div className="h-10 rounded-2xl bg-background shadow-neo" />
+                                <div className="h-12 rounded-2xl bg-background shadow-neo" />
+                            </div>
+                            <div className="grid grid-cols-3 gap-4">
+                                <div className="h-12 rounded-2xl bg-background shadow-neo" />
+                                <div className="h-12 rounded-2xl bg-background shadow-neo" />
+                                <div className="h-12 rounded-2xl bg-background shadow-neo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <div>
-                Hello
-            </div>
+            <section className={"mt-8 grid gap-6 md:grid-cols-2"}>
+                <div className={"flex items-start gap-4"}>
+
+                </div>
+            </section>
         </div>
     )
 }

@@ -12,6 +12,9 @@ module.exports = {
             animation: {
                 gx: "gx 1.25s ease-in-out",
             },
+            fontFamily: {
+                logo: ['TAN-NIMBUS'],
+            },
         },
     },
   plugins: [require("daisyui")],

@@ -2,13 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59609610-f9d1-4f6b-9705-1f501a69ce96" name="Changes" comment="FEAT: node.js 설치&#10;1. node.js 설치&#10;- 웹앱 동시 개발 위해 설치&#10;- nodemon 설치로 속도 개선">
-      <change afterPath="$PROJECT_DIR$/../back/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/public/fonts/TAN-NIMBUS.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/Styles/fonts/TanNimubs.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../back/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/src/main/java/com/zoe/web/WebApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/src/main/java/com/zoe/web/WebApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/0.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/30.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/30.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/32.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/32.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/33.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/33.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/34.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/34.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/35.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/35.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/36.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/36.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/37.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/37.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/38.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/38.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/39.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/39.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/40.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/40.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/42.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/42.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/8.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/8.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/index.pack" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/index.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/node_modules/.cache/default-development/index.pack.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/postcss.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/Layouts/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/Layouts/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/Layouts/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/Layouts/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/Layouts/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/Layouts/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,15 +60,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/varm/dev/comma/front",
+    "last_opened_file_path": "/Users/varm/dev/comma/front/my-app/public/fonts",
     "nodejs_package_manager_path": "npm",
     "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/my-app/src/Assets/Fonts" />
       <recent name="$PROJECT_DIR$/my-app/public/fonts" />
+      <recent name="$PROJECT_DIR$/my-app/src/Assets/Fonts" />
       <recent name="$PROJECT_DIR$/my-app/src/Assets/Img" />
       <recent name="$PROJECT_DIR$/my-app/src/Member" />
     </key>
@@ -85,7 +110,7 @@
       <workItem from="1756636190259" duration="20047000" />
       <workItem from="1756784009098" duration="19987000" />
       <workItem from="1757239189693" duration="11287000" />
-      <workItem from="1757419116353" duration="616000" />
+      <workItem from="1757419116353" duration="7088000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: node.js 설치&#10;1. node.js 설치&#10;- 웹앱 동시 개발 위해 설치&#10;- nodemon 설치로 속도 개선">
       <created>1756392513868</created>

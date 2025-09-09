@@ -13,11 +13,12 @@ import Success from "./Member/Success";
 class App extends Component {
     render() {
         return (
+            <div className={"bg-neutral-100"}>
             <Router>
                 <AuthProvider>
                     <Fragment>
                         <Header />
-                        <div>
+                        <div >
                             <Routes>
                                 {/* 홈 */}
                                 <Route path="/" element={<Home />} />
@@ -38,6 +39,7 @@ class App extends Component {
                     </Fragment>
                 </AuthProvider>
             </Router>
+            </div>
         );
     }
 }

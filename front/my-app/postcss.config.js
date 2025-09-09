@@ -1,6 +1,7 @@
 module.exports = {
   theme: {
     extend: {
+
       keyframes: {
         gx: {
           "0%, 10%, 100%": { width: "400px" },
