@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59609610-f9d1-4f6b-9705-1f501a69ce96" name="Changes" comment="FEAT: node.js 설치&#10;1. node.js 설치&#10;- 웹앱 동시 개발 위해 설치&#10;- nodemon 설치로 속도 개선">
-      <change afterPath="$PROJECT_DIR$/../back/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../back/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.idea/sonarlint/issuestore/c/8/c8c2fb7d269e355b8398e4da3ec09d8a6776c6b4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/.idea/sonarlint/issuestore/d/6/d66f399012e840edcbbf9f0d9c1980418df0ee66" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/build/classes/java/main/com/zoe/web/Config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../back/build/classes/java/main/com/zoe/web/Config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/build/resources/main/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/build/tmp/compileJava/compileTransaction/stash-dir/MemberController.class.uniqueId4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/build/tmp/compileJava/compileTransaction/stash-dir/MemberService.class.uniqueId2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/build/tmp/compileJava/compileTransaction/stash-dir/SecurityConfig.class.uniqueId5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../back/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../back/src/main/java/com/zoe/web/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/src/main/java/com/zoe/web/Config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../back/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../back/src/main/java/com/zoe/web/WebApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../back/src/main/java/com/zoe/web/WebApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,17 +29,17 @@
     <option name="flattenModules" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/varm/dev/comma/front/my-app/src/Assets/Fonts&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/varm/dev/comma/front",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/my-app/src/Assets/Fonts" />
@@ -94,6 +85,7 @@
       <workItem from="1756636190259" duration="20047000" />
       <workItem from="1756784009098" duration="19987000" />
       <workItem from="1757239189693" duration="11287000" />
+      <workItem from="1757419116353" duration="616000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: node.js 설치&#10;1. node.js 설치&#10;- 웹앱 동시 개발 위해 설치&#10;- nodemon 설치로 속도 개선">
       <created>1756392513868</created>
