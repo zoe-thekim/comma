@@ -29,8 +29,8 @@ spring:
       client:
         registration:
           google:
-            client-id: ${GOOGLE_CLIENT_ID}
-            client-secret: ${GOOGLE_CLIENT_SECRET}
+            client-id: 583773057522-8seshof4msp5ckk1ci25kid2i8c4a2gm.apps.googleusercontent.com        # 빈 값이면 안 됩니다!
+            client-secret: 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
             scope: openid, profile, email          # OIDC라면 이렇게
             # redirect-uri 미지정 시 기본: {baseUrl}/login/oauth2/code/{registrationId}
         provider:
