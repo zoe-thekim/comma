@@ -34,4 +34,9 @@ public class MemberController {
     public String JoinSuccess(){
         return "/member/Success";
     }
+
+    @GetMapping("/member/information/Information")
+    public String UserInformation(){
+        return "/member/information/Information";
+    }
 }

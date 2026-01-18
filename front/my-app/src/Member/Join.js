@@ -1,30 +1,32 @@
 import { useState } from "react";
-import {api, apiFetch} from "../api";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Auth/Authenticator";
 
 function Join() {
     const [MEMBER_ID, setMEMBER_ID] = useState("");
     const [MEMBER_PWD, setMEMBER_PWD] = useState("");
+    const [MEMBER_PWD_CHECK, setMEMBER_PWD_CHECK] = useState("");
     const navigate = useNavigate();
+    const { register } = useAuth();
 
     const handleJoin = async (e) => {
         e.preventDefault();
+
+        if (MEMBER_PWD !== MEMBER_PWD_CHECK) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
+
         try {
-            console.log("1");
-            const res = await api.post("/join", {
-                memberId: MEMBER_ID,
-                memberPwd: MEMBER_PWD
-            });
-            console.log("2");
-            if (res.data.status === "OK") {
-                alert("회원가입 성공");
+            const result = await register(MEMBER_ID, MEMBER_PWD);
+            if (result.status === "OK" || result.memberId) {
+                alert("회원가입 및 로그인 성공");
                 navigate("/");
             }
         } catch (err) {
-            alert("회원가입 실패");
+            const errorMessage = err?.response?.data?.message || "회원가입 실패";
+            alert(errorMessage);
             console.error("JOIN ERROR:", err?.response?.status, err?.response?.data || err.message);
-
         }
     };
 
@@ -56,13 +58,13 @@ function Join() {
 
 
                 <div style={{ marginBottom: 12 }}>
-                    <label htmlFor="memberPwd" style={{ display: "block", marginBottom: 6 }}>
+                    <label htmlFor="memberPwdCheck" style={{ display: "block", marginBottom: 6 }}>
                         Password Check
                     </label>
                     <input
                         type="password"
-                        value={MEMBER_PWD}
-                        onChange={(e) => setMEMBER_PWD(e.target.value)}
+                        value={MEMBER_PWD_CHECK}
+                        onChange={(e) => setMEMBER_PWD_CHECK(e.target.value)}
                         placeholder="Password Check"
                     />
                 </div>

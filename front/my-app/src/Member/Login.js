@@ -7,8 +7,9 @@ import {useAuth} from "../Auth/Authenticator";
 export default function Login() {
     const [MEMBER_ID, setMEMBER_ID] = useState("");
     const [MEMBER_PWD, setMEMBER_PWD] = useState("");
-    const { login } = useAuth();
+    const { login, register } = useAuth();
     const navigate = useNavigate();
+    const [signUpData, setSignUpData] = useState({ name: "", email: "", password: "" });
 
     async function onSubmit(e){
         e.preventDefault();
@@ -38,9 +39,29 @@ export default function Login() {
         window.location.href = "http://localhost:8080/oauth2/authorization/google";
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission here
+        try {
+            console.log("회원가입 시작");
+            const result = await register(signUpData.email, signUpData.password);
+
+            console.log("회원가입 성공 응답 : ", result);
+            if (result.status === "OK" || result.memberId) {
+                alert("회원가입 성공");
+                navigate("/");
+            }
+        } catch (err) {
+
+            console.error("전체 에러:", err); // 전체 에러 객체
+            console.error("에러 응답:", err?.response); // 응답 객체
+            console.error("에러 데이터:", err?.response?.data); // 응답 데이터
+            console.error("에러 상태:", err?.response?.status); // HTTP 상태 코드
+            console.error("에러 메시지:", err.message); // 에러 메시지
+
+            const errorMessage = err?.response?.data?.message || "회원가입 실패";
+            alert(errorMessage);
+            console.error("SIGNUP ERROR:", err?.response?.status, err?.response?.data || err.message);
+        }
     };
 
     // const ToJoin = () => {
@@ -72,18 +93,24 @@ export default function Login() {
                         <input
                             type="text"
                             placeholder="Name"
+                            value={signUpData.name}
+                            onChange={(e) => setSignUpData({...signUpData, name: e.target.value})}
                             className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
                         />
 
                         <input
                             type="email"
                             placeholder="Email"
+                            value={signUpData.email}
+                            onChange={(e) => setSignUpData({...signUpData, email: e.target.value})}
                             className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
                         />
 
                         <input
                             type="password"
                             placeholder="Password"
+                            value={signUpData.password}
+                            onChange={(e) => setSignUpData({...signUpData, password: e.target.value})}
                             className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
                         />
 
@@ -91,7 +118,7 @@ export default function Login() {
                             onClick={handleSubmit}
                             className="w-[180px] h-12 rounded-[25px] mt-12 font-bold text-sm tracking-widest bg-blue-500 text-white shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] border-none outline-none hover:shadow-[6px_6px_10px_#d1d9e6,-6px_-6px_10px_#ffffff] hover:scale-[0.985] active:shadow-[2px_2px_6px_#d1d9e6,-2px_-2px_6px_#ffffff] active:scale-[0.97] transition-all duration-300"
                         >
-                            SIGN UP
+                            JOIN
                         </button>
                     </div>
                 </div>
@@ -111,6 +138,7 @@ export default function Login() {
                             type="email"
                             placeholder="Email"
                             value={MEMBER_ID}
+                            onChange={(e) => setMEMBER_ID(e.target.value)}
                             className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
                         />
 
@@ -118,6 +146,7 @@ export default function Login() {
                             type="password"
                             placeholder="Password"
                             value={MEMBER_PWD}
+                            onChange={(e) => setMEMBER_PWD(e.target.value)}
                             className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
                         />
 
@@ -193,7 +222,7 @@ export default function Login() {
                             disabled={isAnimating}
                             className="w-[180px] h-12 rounded-[40px] font-bold text-sm tracking-widest bg-neutral-100 shadow-[inset_-3px_-4px_4px_0px_rgba(255,255,255,1.00)] shadow-[inset_0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:scale-[0.985] active:shadow-[2px_2px_6px_#d1d9e6,-2px_-2px_6px_#ffffff] active:scale-[0.97] transition-all duration-300"
                         >
-                            JOIN IN
+                            GO TO JOIN
                         </button>
                     </div>
 

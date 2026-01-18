@@ -24,28 +24,34 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class MemberRestController {
 
     private final SecurityConfig sc;
     private final MemberService memberService;
 
     @PostMapping("/join")
-    public ResponseEntity<?> join(@RequestBody Member member, HttpServletRequest request) {
-        Member m = new Member();
-        m.setMemberId(member.getMemberId());
-        log.info(sc.passwordEncoder().encode(member.getMemberPwd()));
-        m.setMemberPwd(sc.passwordEncoder().encode(member.getMemberPwd()));
+    public ResponseEntity<?> join(@RequestBody Map<String, Object> requestBody, HttpServletRequest request) {
+        log.info("회원가입 요청 - Provider: ");
 
+        Member m = new Member();
+        m.setMemberId((String) requestBody.get("memberId"));
+        m.setMemberPwd(sc.passwordEncoder().encode((String) requestBody.get("memberPwd")));
+
+        String provider = (String) requestBody.getOrDefault("provider", "local");
+        log.info("회원가입 요청 - Provider: " + provider);
 
         int res = memberService.SaveMember(m);
+        log.info(String.valueOf(res));
         if (res == 1) {
-            return ResponseEntity.ok(Map.of("status", "OK", "message", "회원가입 성공"));
+            return ResponseEntity.ok(Map.of("status", "OK", "message", "회원가입 성공", "provider", provider));
         } else if(res == 2){
             return ResponseEntity.badRequest().body(Map.of("status", "ID DUPLICATE", "message", "중복된 이메일입니다."));
         }
         else {
             return ResponseEntity.badRequest().body(Map.of("status", "FAIL", "message", "회원가입 실패"));
         }
+
     }
 
     @PostMapping("/login")
@@ -69,13 +75,15 @@ public class MemberRestController {
     public ResponseEntity<?> GetMemberSession(HttpServletRequest request){
         HttpSession session = request.getSession(false); // 기존 세션 가져오기. 없으면 null
         if (session == null || session.getAttribute("LOGIN_MEMBER_ID") == null) {
+
+            log.info("세션 확인: 로그인되지 않음");
             return ResponseEntity.status(401).body(Map.of("status", "ANON"));
         }
 
         String memberId = (String) session.getAttribute("LOGIN_MEMBER_ID");
         int memberNo = (int) session.getAttribute("LOGIN_MEMBER_NO");
 
-        log.info("GetMemberSession");
+        log.info("[GetMemberSession] 세션 확인 : 로그인 정보 : ", memberId);
 
         return ResponseEntity.ok(Map.of(
                 "status", "OK",

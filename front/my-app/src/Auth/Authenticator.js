@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
                 console.log("로그인 확인");
                 if (mounted) setUser(res.data);
             } catch {
+                console.log("세션 없음 또는 미로그인 상태");
                 if (mounted) setUser(null);         // 401 등 → 비로그인
             } finally {
                 if (mounted) setLoading(false);
@@ -48,7 +49,24 @@ export function AuthProvider({ children }) {
         // }
     }
 
-    const value = { user, loading, login, logout, isAuthed: !!user };
+    // 회원가입
+    async function register(memberId, memberPwd, provider = 'local') {
+        const res = await api.post("/join", {
+            memberId,
+            memberPwd
+        });
+
+        if (res.data.status === "OK") {
+            console.log("Authenticator: 회원가입 성공, 자동 로그인 시도");
+            // 회원가입 성공 시 자동 로그인
+            return await login(memberId, memberPwd);
+        }
+
+        console.log("Authenticator: 회원가입 실패");
+        return res.data;
+    }
+
+    const value = { user, loading, login, logout, register, isAuthed: !!user };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

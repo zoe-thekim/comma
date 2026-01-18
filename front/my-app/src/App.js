@@ -33,6 +33,8 @@ class App extends Component {
                                 <Route path="/Member/Login" element={<Navigate to="/member/login" replace />} />
                                 <Route path="/Member/Join" element={<Navigate to="/member/join" replace />} />
                                 <Route path="/Member/Google" element={<Navigate to="/member/google" replace />} />
+
+                                <Route path="/Member/Information/Home" element={<Navigate to="/member/information/Information" replace />} />
                             </Routes>
                         </div>
                         <Footer />
