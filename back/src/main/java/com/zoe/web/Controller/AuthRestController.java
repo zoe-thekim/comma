@@ -1,6 +1,7 @@
 package com.zoe.web.Controller;
 
 import com.zoe.web.Config.SecurityConfig;
+import com.zoe.web.DTO.MemberDTO;
 import com.zoe.web.Entity.Member;
 import com.zoe.web.Service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,11 +26,13 @@ public class AuthRestController {
     private final AuthService authService;
 
     @PostMapping("/join")
-    public ResponseEntity<?> join(@RequestBody Member member, HttpServletRequest request) {
+    public ResponseEntity<?> join(@RequestBody MemberDTO request, HttpServletRequest httpRequest) {
         Member m = new Member();
-        m.setMemberId(member.getMemberId());
-        log.info(sc.passwordEncoder().encode(member.getMemberPwd()));
-        m.setMemberPwd(sc.passwordEncoder().encode(member.getMemberPwd()));
+        m.setMemberId(request.getMemberId());
+        m.setMemberPwd(sc.passwordEncoder().encode(request.getMemberPwd()));
+        m.setRole("USER");
+        m.setStatus("ACTIVE");
+        log.info(request.getMemberId());
 
         int res = authService.SaveMember(m);
         log.info(String.valueOf(res));

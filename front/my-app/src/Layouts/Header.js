@@ -90,7 +90,8 @@ export default function Header(){
 
                                 ) :
 
-                                <a className="block px-3 " href="/Member/Login">LOGIN</a>
+                                <a href="/Member/Login"
+                                   className="block py-2 px-3 text-gray-900 hover:text-blue-700 dark:text-white font-medium">LOGIN</a>
                             }
                         </li>
                     </ul>

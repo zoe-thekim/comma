@@ -51,7 +51,6 @@ export default function Login() {
                 navigate("/");
             }
         } catch (err) {
-
             console.error("전체 에러:", err); // 전체 에러 객체
             console.error("에러 응답:", err?.response); // 응답 객체
             console.error("에러 데이터:", err?.response?.data); // 응답 데이터
@@ -84,12 +83,6 @@ export default function Login() {
                     <div className="flex justify-center items-center flex-col w-full h-full">
                         <h2 className="text-3xl font-bold leading-[3] text-gray-900 mb-8">Create Account</h2>
 
-                        <div className="flex mb-4">
-                            {/* Social icons placeholder */}
-                        </div>
-
-                        <span className="mt-7 mb-3">or use email for registration</span>
-
                         <input
                             type="text"
                             placeholder="Name"
@@ -116,8 +109,7 @@ export default function Login() {
 
                         <button
                             onClick={handleSubmit}
-                            className="w-[180px] h-12 rounded-[25px] mt-12 font-bold text-sm tracking-widest bg-blue-500 text-white shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] border-none outline-none hover:shadow-[6px_6px_10px_#d1d9e6,-6px_-6px_10px_#ffffff] hover:scale-[0.985] active:shadow-[2px_2px_6px_#d1d9e6,-2px_-2px_6px_#ffffff] active:scale-[0.97] transition-all duration-300"
-                        >
+                            className="w-[180px] h-12 bg-neutral-100 rounded-[40px] mt-12 font-bold text-sm tracking-widest ext-white shadow-[inset_-3px_-4px_4px_0px_rgba(255,255,255,1.00)] shadow-[inset_0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-[6px_6px_10px_#d1d9e6,-6px_-6px_10px_#ffffff] hover:scale-[0.985] active:shadow-[2px_2px_6px_#d1d9e6,-2px_-2px_6px_#ffffff] active:scale-[0.97] transition-all duration-300">
                             JOIN
                         </button>
                     </div>
@@ -127,12 +119,6 @@ export default function Login() {
                 <div className={`w-1/2 flex justify-center items-center w-1/2 h-full p-6 bg-#F5F5F5 transition-all duration-[1250ms] z-10`}>
                     <div className="flex justify-center items-center flex-col w-full h-full">
                         <h2 className="text-3xl font-bold leading-[3] text-gray-900 mb-8">Sign in to Website</h2>
-
-                        <div className="flex mb-4">
-                            {/* Social icons placeholder */}
-                        </div>
-
-                        <span className="mt-7 mb-3">or use your email account</span>
 
                         <input
                             type="email"
@@ -200,7 +186,7 @@ export default function Login() {
                 `}>
 
                     {/* Background Circles */}
-                    <div className={`absolute w-[500px] h-[500px] rounded-full bg-#F5F5F5 shadow-[inset_8px_8px_12px_#d1d9e6,inset_-8px_-8px_12px_#ffffff] bottom-[-60%] transition-all duration-[1250ms] ${
+                    <div className={`absolute w-[400px] h-[400px] rounded-full bg-#F5F5F5 shadow-[inset_8px_8px_12px_#d1d9e6,inset_-8px_-8px_12px_#ffffff] bottom-[-30%] transition-all duration-[1250ms] ${
                         isSignUp ? 'left-[60%]' : 'left-[-60%]'
                     }`} />
 
@@ -237,9 +223,9 @@ export default function Login() {
                         <button
                             onClick={handleToggle}
                             disabled={isAnimating}
-                            className="w-[180px] h-12 rounded-[25px] font-bold text-sm tracking-widest bg-blue-500 text-white shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#ffffff] border-none outline-none cursor-pointer hover:shadow-[6px_6px_10px_#d1d9e6,-6px_-6px_10px_#ffffff] hover:scale-[0.985] active:shadow-[2px_2px_6px_#d1d9e6,-2px_-2px_6px_#ffffff] active:scale-[0.97] transition-all duration-300"
+                            className="w-[180px] h-12 bg-neutral-100 rounded-[40px] mt-12 font-bold text-sm tracking-widest ext-white shadow-[inset_-3px_-4px_4px_0px_rgba(255,255,255,1.00)] shadow-[inset_0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-[6px_6px_10px_#d1d9e6,-6px_-6px_10px_#ffffff] hover:scale-[0.985] active:shadow-[2px_2px_6px_#d1d9e6,-2px_-2px_6px_#ffffff] active:scale-[0.97] transition-all duration-300"
                         >
-                            SIGN UP
+                            GO TO SIGN IN
                         </button>
                     </div>
                 </div>

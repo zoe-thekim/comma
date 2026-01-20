@@ -3,14 +3,16 @@ package com.zoe.web.Entity;
 import com.nimbusds.oauth2.sdk.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "member")
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +33,24 @@ public class Member {
     // 구글 로그인 한 유저의 고유 ID
     @Column(name = "provider_id", nullable = true)
     private String providerId;
+
+    // 회원 역할
+    @Column(name = "role", nullable = false)
+    private String role;
+
+    // 회원 상태
+    @Column(name = "status", nullable = false)
+    private String status;
+
+    // 생성 시간
+    @CreationTimestamp
+    @Column(name = "create_dt", nullable = false, updatable = false)
+    private LocalDateTime createDt;
+
+    // 수정 시간
+    @UpdateTimestamp
+    @Column(name = "update_dt", nullable = true)
+    private LocalDateTime updateDt;
 
     public static Member createSocialMember(String email, AuthProvider provider, String providerId){
         Member member = new Member();

@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
         let mounted = true;
         (async () => {
             try {
-                const res = await api.get("/GetMemberSession");   // 세션 있으면 200
+                const res = await api.get("/auth/me");   // 세션 있으면 200
                 console.log("로그인 확인");
                 if (mounted) setUser(res.data);
             } catch {
@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
 
     // 로그인
     async function login(memberId, memberPwd) {
-        const res = await api.post("/login", { memberId, memberPwd });
+        const res = await api.post("/auth/login", { memberId, memberPwd });
         console.log("Authenticator: 로그인 성공");
         // 서버가 { status:"OK", memberId, memberNo } 형태로 준다고 가정
         setUser(res.data);
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
 
     // 로그아웃
     async function logout() {
-        await api.post("/logout");
+        await api.post("/auth/logout");
         console.log("1");
 
         console.log("Authenticator: 로그아웃 성공");
@@ -50,8 +50,8 @@ export function AuthProvider({ children }) {
     }
 
     // 회원가입
-    async function register(memberId, memberPwd, provider = 'local') {
-        const res = await api.post("/join", {
+    async function register(memberId, memberPwd, role = 'USER') {
+        const res = await api.post("/auth/join", {
             memberId,
             memberPwd
         });

@@ -1,6 +1,6 @@
 package com.zoe.web.Controller;
 
-import com.zoe.web.Service.MemberService;
+import com.zoe.web.Service.AuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class AuthController {
-    private final MemberService memberService;
+    private final AuthService authService;
 
     @GetMapping("/login")
     public String login() {
