@@ -2,19 +2,14 @@ package com.zoe.web.Controller;
 
 import com.zoe.web.Config.SecurityConfig;
 import com.zoe.web.Entity.Member;
-import com.zoe.web.Service.MemberService;
-import groovy.transform.Undefined;
-import jakarta.servlet.http.Cookie;
+import com.zoe.web.Service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Console;
 import java.util.Map;
 
 
@@ -23,11 +18,11 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
-public class MemberRestController {
+@RequestMapping("/api/auth")
+public class AuthRestController {
 
     private final SecurityConfig sc;
-    private final MemberService memberService;
+    private final AuthService authService;
 
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody Member member, HttpServletRequest request) {
@@ -36,7 +31,7 @@ public class MemberRestController {
         log.info(sc.passwordEncoder().encode(member.getMemberPwd()));
         m.setMemberPwd(sc.passwordEncoder().encode(member.getMemberPwd()));
 
-        int res = memberService.SaveMember(m);
+        int res = authService.SaveMember(m);
         log.info(String.valueOf(res));
         if (res == 1) {
             return ResponseEntity.ok(Map.of("status", "OK", "message", "회원가입 성공"));
@@ -52,7 +47,7 @@ public class MemberRestController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Member member, HttpServletRequest request)
     {
-        Member me =  memberService.LoginCheck(member);
+        Member me =  authService.LoginCheck(member);
         if(me != null){
             log.info(me.getMemberId());
             log.info( me.getMemberPwd());
@@ -66,8 +61,9 @@ public class MemberRestController {
         return ResponseEntity.badRequest().body(Map.of("status", "NG"));
     }
 
-    @GetMapping("/GetMemberSession")
-    public ResponseEntity<?> GetMemberSession(HttpServletRequest request){
+    // 세션 확인하는 함수
+    @GetMapping("/me")
+    public ResponseEntity<?> me(HttpServletRequest request){
         HttpSession session = request.getSession(false); // 기존 세션 가져오기. 없으면 null
         if (session == null || session.getAttribute("LOGIN_MEMBER_ID") == null) {
             return ResponseEntity.status(401).body(Map.of("status", "ANON"));

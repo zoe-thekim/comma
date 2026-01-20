@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 /*
 * Repository: DB 접근만. 엔티티 CRUD/조회 쿼리.
 → findByMemberId(...) 같은 아이디 단일 조회만 하고, 비번 비교는 절대 넣지 않음.
@@ -25,7 +23,7 @@ Controller(@RestController): 얇게 유지.
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MemberService {
+public class AuthService {
     private final MemberRepository memberRepository;
     private final SecurityConfig cfg;
     // 회원가입
@@ -37,7 +35,7 @@ public class MemberService {
             if(memberRepository.existsByMemberId(member.getMemberId())){
                 return 2;   // 중복
             }
-            log.info("MemberService");
+            log.info("AuthService");
 
             log.info("ID : " + member.getMemberId());
             log.info("PWD : " + member.getMemberPwd());
