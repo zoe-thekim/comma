@@ -1,0 +1,42 @@
+
+
+spring:
+  # H2 Database 설정
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/WEB?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC    # H2 DB 연결 주소 (Embedded Mode)
+    username: root
+    password: Tres_247!
+  mvc:
+    view:
+      suffix: .html
+    cors:
+      allowed-origins: http://localhost:3000
+      allowed-methods: GET, POST, PUT, DELETE
+
+  # JPA 설정
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update       # DB 초기화 전략 (none, create, create-drop, update, validate)
+    properties:
+      hibernate:
+        format_sql: true      # 쿼리 로그 포맷 (정렬)
+        show_sql: true        # 쿼리 로그 출력
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: openid, profile, email          # OIDC라면 이렇게
+            # redirect-uri 미지정 시 기본: {baseUrl}/login/oauth2/code/{registrationId}
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com
+  devtools:
+    livereload.enabled: true
+#  thymeleaf:
+#    suffix: .html
