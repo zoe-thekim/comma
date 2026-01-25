@@ -26,8 +26,8 @@ export function AuthProvider({ children }) {
     }, []);
 
     // 로그인
-    async function login(memberId, memberPwd) {
-        const res = await api.post("/auth/login", { memberId, memberPwd });
+    async function login(userEmail, userPwd) {
+        const res = await api.post("/auth/login", { userEmail, userPwd });
         console.log("Authenticator: 로그인 성공");
         // 서버가 { status:"OK", memberId, memberNo } 형태로 준다고 가정
         setUser(res.data);
@@ -50,23 +50,45 @@ export function AuthProvider({ children }) {
     }
 
     // 회원가입
-    async function register(memberId, memberPwd, role = 'USER') {
+    async function register(userEmail, userPwd, role = 'USER') {
         const res = await api.post("/auth/join", {
-            memberId,
-            memberPwd
+            userEmail,
+            userPwd
         });
 
         if (res.data.status === "OK") {
             console.log("Authenticator: 회원가입 성공, 자동 로그인 시도");
             // 회원가입 성공 시 자동 로그인
-            return await login(memberId, memberPwd);
+            return await login(userEmail, userPwd);
         }
 
         console.log("Authenticator: 회원가입 실패");
         return res.data;
     }
 
-    const value = { user, loading, login, logout, register, isAuthed: !!user };
+    async function update(name, phone, address) {
+        const res = await api.post("/auth/update", {
+            name,
+            phone,
+            address
+        });
+
+        if (res.data.status === "OK") {
+            console.log("Authenticator: 회원 정보 업데이트 성공");
+            // 회원가입 성공 시 자동 로그인
+            return await update(name, phone, address);
+        }
+
+        console.log("Authenticator: 회원 정보 업데이트 실패");
+        return res.data;
+    }
+
+    // 사용자 정보 업데이트
+    function updateUser(updatedUserData) {
+        setUser(prev => ({ ...prev, ...updatedUserData }));
+    }
+
+    const value = { user, loading, login, logout, register, updateUser, isAuthed: !!user };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

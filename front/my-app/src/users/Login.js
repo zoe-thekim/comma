@@ -5,16 +5,18 @@ import {Navigate, useNavigate} from "react-router-dom";
 import {useAuth} from "../Auth/Authenticator";
 
 export default function Login() {
-    const [MEMBER_ID, setMEMBER_ID] = useState("");
-    const [MEMBER_PWD, setMEMBER_PWD] = useState("");
+    const [user_email, setUserEmail] = useState("");
+    const [user_pwd, setUserPwd] = useState("");
     const { login, register } = useAuth();
     const navigate = useNavigate();
     const [signUpData, setSignUpData] = useState({ name: "", email: "", password: "" });
+    const [passwordCheck, setPasswordCheck] = useState("");
+    const [passwordMatch, setPasswordMatch] = useState(true);
 
     async function onSubmit(e){
         e.preventDefault();
         try{
-            await login(MEMBER_ID, MEMBER_PWD);
+            await login(user_email, user_pwd);
             alert("로그인 성공");
             navigate("/");
         }catch(err){
@@ -39,8 +41,21 @@ export default function Login() {
         window.location.href = "http://localhost:8080/oauth2/authorization/google";
     }
 
+    const handlePasswordCheckChange = (e) => {
+        const value = e.target.value;
+        setPasswordCheck(value);
+        setPasswordMatch(signUpData.password === value);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // 비밀번호 일치 확인
+        if (!passwordMatch || signUpData.password !== passwordCheck) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
+
         try {
             console.log("회원가입 시작");
             const result = await register(signUpData.email, signUpData.password);
@@ -77,19 +92,20 @@ export default function Login() {
         setIsLogin(!isLogin);
     };
     return (
+        // 회원가입 부분
         <div className="w-full min-h-screen flex justify-center items-center bg-#F5F5F5 font-sans text-xs text-gray-500">
             <div className="flex w-2xl max-w-5xl min-h-[500px] h-[600px] p-6 bg-gray-100 shadow-[10px_10px_20px_#d1d9e6,-10px_-10px_20px_#ffffff] rounded-3xl overflow-hidden scale-75 lg:scale-90 xl:scale-100">
                 <div className="w-1/2 flex justify-center items-center h-full p-6 bg-gray-100 z-10">
                     <div className="flex justify-center items-center flex-col w-full h-full">
                         <h2 className="text-3xl font-bold leading-[3] text-gray-900 mb-8">Create Account</h2>
 
-                        <input
-                            type="text"
-                            placeholder="Name"
-                            value={signUpData.name}
-                            onChange={(e) => setSignUpData({...signUpData, name: e.target.value})}
-                            className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
-                        />
+                        {/*<input*/}
+                        {/*    type="text"*/}
+                        {/*    placeholder="Name"*/}
+                        {/*    value={signUpData.name}*/}
+                        {/*    onChange={(e) => setSignUpData({...signUpData, name: e.target.value})}*/}
+                        {/*    className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"*/}
+                        {/*/>*/}
 
                         <input
                             type="email"
@@ -107,6 +123,19 @@ export default function Login() {
                             className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
                         />
 
+                        <input
+                            type="password"
+                            placeholder="Password CHECK"
+                            value={passwordCheck}
+                            onChange={handlePasswordCheckChange}
+                            className={`w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300 ${
+                                !passwordMatch && passwordCheck !== "" ? "shadow-[inset_2px_2px_4px_#ff6b6b,inset_-2px_-2px_4px_#ffffff]" : ""
+                            }`}
+                        />
+                        {!passwordMatch && passwordCheck !== "" && (
+                            <p className="text-red-500 text-xs mt-1 px-2">비밀번호가 일치하지 않습니다.</p>
+                        )}
+
                         <button
                             onClick={handleSubmit}
                             className="w-[180px] h-12 bg-neutral-100 rounded-[40px] mt-12 font-bold text-sm tracking-widest ext-white shadow-[inset_-3px_-4px_4px_0px_rgba(255,255,255,1.00)] shadow-[inset_0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-[6px_6px_10px_#d1d9e6,-6px_-6px_10px_#ffffff] hover:scale-[0.985] active:shadow-[2px_2px_6px_#d1d9e6,-2px_-2px_6px_#ffffff] active:scale-[0.97] transition-all duration-300">
@@ -115,24 +144,24 @@ export default function Login() {
                     </div>
                 </div>
 
-
+                 {/*로그인 부분*/}
                 <div className={`w-1/2 flex justify-center items-center w-1/2 h-full p-6 bg-#F5F5F5 transition-all duration-[1250ms] z-10`}>
                     <div className="flex justify-center items-center flex-col w-full h-full">
-                        <h2 className="text-3xl font-bold leading-[3] text-gray-900 mb-8">Sign in to Website</h2>
+                        <h2 className="text-3xl font-bold leading-[3] text-gray-900 mb-8">LOG IN</h2>
 
                         <input
                             type="email"
                             placeholder="Email"
-                            value={MEMBER_ID}
-                            onChange={(e) => setMEMBER_ID(e.target.value)}
+                            value={user_email}
+                            onChange={(e) => setUserEmail(e.target.value)}
                             className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
                         />
 
                         <input
                             type="password"
                             placeholder="Password"
-                            value={MEMBER_PWD}
-                            onChange={(e) => setMEMBER_PWD(e.target.value)}
+                            value={user_pwd}
+                            onChange={(e) => setUserPwd(e.target.value)}
                             className="w-[350px] h-10 my-1 px-6 text-sm tracking-wide border-none outline-none bg-#F5F5F5 rounded-lg shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#ffffff] focus:shadow-[inset_4px_4px_8px_#d1d9e6,inset_-4px_-4px_8px_#ffffff] transition-all duration-300"
                         />
 

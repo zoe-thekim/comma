@@ -1,4 +1,4 @@
-package com.zoe.web.Controller;
+package com.zoe.web.Controller.Users;
 
 import com.zoe.web.Service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +15,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
-
-        log.info("1");
+        log.info("Controller: 로그인");
         return "/auth/login";
     }
 

@@ -6,9 +6,10 @@ import Footer from "./Layouts/Footer";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./Auth/Authenticator";
 import Home from "./Layouts/Home";
-import Login from "./Member/Login";
-import Join from "./Member/Join";
-import Success from "./Member/Success";
+import Login from "./users/Login";
+import Join from "./users/Join";
+import Success from "./users/Success";
+import Information from "./users/Information";
 
 class App extends Component {
     render() {
@@ -24,17 +25,18 @@ class App extends Component {
                                 <Route path="/" element={<Home />} />
 
                                 {/* ✅ 소문자 기준 라우트 */}
-                                <Route path="/member/login" element={<Login />} />
-                                <Route path="/member/join" element={<Join />} />
-                                <Route path="/member/google" element={<Navigate to="/member/google" replace />} />
+                                <Route path="/users/Login" element={<Login />} />
+                                <Route path="/users/Join" element={<Join />} />
+                                <Route path="/users/information" element={<Information />} />
+                                <Route path="/users/google" element={<Navigate to="/member/google" replace />} />
 
 
                                 {/* 호환용(대문자로 접근해도 소문자로 리다이렉트) */}
-                                <Route path="/Member/Login" element={<Navigate to="/member/login" replace />} />
-                                <Route path="/Member/Join" element={<Navigate to="/member/join" replace />} />
-                                <Route path="/Member/Google" element={<Navigate to="/member/google" replace />} />
+                                <Route path="/users/Login" element={<Navigate to="/users/Login" replace />} />
+                                <Route path="/users/Join" element={<Navigate to="/users/Join" replace />} />
+                                <Route path="/users/Google" element={<Navigate to="/users/google" replace />} />
 
-                                <Route path="/Member/Information/Home" element={<Navigate to="/member/information/Information" replace />} />
+                                <Route path="/Users/Information/Home" element={<Navigate to="/users/information" replace />} />
                             </Routes>
                         </div>
                         <Footer />

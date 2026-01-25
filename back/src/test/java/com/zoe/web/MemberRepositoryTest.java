@@ -1,8 +1,7 @@
 package com.zoe.web;
 
-import com.zoe.web.Entity.Member;
-import com.zoe.web.Repository.MemberRepository;
-import org.assertj.core.api.Assertions;
+import com.zoe.web.Entity.Users;
+import com.zoe.web.Repository.AuthRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,14 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberRepositoryTest {
 
     @Autowired
-    MemberRepository memberRepository;
+    AuthRepository authRepository;
 
     @Test
     @Transactional
     @Rollback(false)	// H2 DB 상에서 직접 확인하기 위해, 테스트 이후에도 DB를 롤백하지 않겠다.
     public void testMember() throws Exception {
         //given
-        Member member = new Member();
+        Users member = new Users();
 //        member.setMEMBER_NO(1);
 
         //when

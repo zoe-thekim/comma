@@ -1,8 +1,10 @@
 package com.zoe.web.Security.Provider;
 
 import com.zoe.web.Entity.AuthProvider;
-import com.zoe.web.Entity.Member;
-import com.zoe.web.Repository.MemberRepository;
+import com.zoe.web.Entity.Users;
+import com.zoe.web.Entity.UsersAuthProvider;
+import com.zoe.web.Repository.AuthRepository;
+import com.zoe.web.Repository.UsersAuthProviderRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -11,12 +13,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class GoogleOidcUserService implements OAuth2UserService<OidcUserRequest, OidcUser> {
-    private final MemberRepository memberRepository;
+    private final AuthRepository authRepository;
+    private final UsersAuthProviderRepository usersAuthProviderRepository;
     private final HttpSession httpSession;
 
     @Override
@@ -46,15 +47,35 @@ public class GoogleOidcUserService implements OAuth2UserService<OidcUserRequest,
         }
 
         log.info("2");
-        // upsert
-        Member member = memberRepository.findByMemberId(email)
-                .orElseGet(() -> memberRepository.save(
-                        Member.createSocialMember(email, AuthProvider.GOOGLE, sub) // 이름/사진 저장 로직 추가 권장
-                ));
+        // 기존 OAuth 인증 정보 확인
+        UsersAuthProvider authProvider = usersAuthProviderRepository
+                .findByProviderAndProviderUserId(AuthProvider.GOOGLE, sub)
+                .orElse(null);
 
-        httpSession.setAttribute("LOGIN_MEMBER_NO", member.getMemberNo() );
-        httpSession.setAttribute("LOGIN_MEMBER_ID", member.getMemberId() );
-        log.info(member.getMemberId());
+        Users user;
+        if (authProvider != null) {
+            // 기존 OAuth 사용자 - 연결된 Users 정보 사용
+            user = authProvider.getUsers();
+        } else {
+            // 새로운 OAuth 사용자 - Users 생성 후 AuthProvider 생성
+            user = authRepository.findByUserEmail(email)
+                    .orElseGet(() -> authRepository.save(Users.createSocialUsers(email)));
+
+            // OAuth 인증 정보 저장
+            authProvider = UsersAuthProvider.createAuthProvider(user, AuthProvider.GOOGLE, sub);
+            usersAuthProviderRepository.save(authProvider);
+        }
+
+        // 최신 사용자 정보로 세션 설정 (이메일 기준 통일)
+        Users currentUser = authRepository.findByUserEmail(email)
+                .orElseThrow(() -> new OAuth2AuthenticationException("사용자 정보를 찾을 수 없습니다."));
+
+        httpSession.setAttribute("LOGIN_USER_EMAIL", currentUser.getUserEmail());
+        httpSession.setAttribute("LOGIN_USER_NO", currentUser.getUserNo());
+        httpSession.setAttribute("LOGIN_USER_PWD", currentUser.getUserPwd());
+
+        log.info("Google OAuth 로그인 완료 - 이메일: " + currentUser.getUserEmail() +
+                ", 사용자 번호: " + currentUser.getUserNo());
 
         // 권한 부여 (예시)
         var authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
