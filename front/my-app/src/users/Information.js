@@ -2,6 +2,36 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../Auth/Authenticator";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import AddressSearch from "../components/AddressSearch";
+
+// axios 요청/응답 로깅을 위한 interceptor 추가
+axios.interceptors.request.use(
+    (config) => {
+        console.log('Axios Request:', config);
+        return config;
+    },
+    (error) => {
+        console.error('Axios Request Error:', error);
+        return Promise.reject(error);
+    }
+);
+
+axios.interceptors.response.use(
+    (response) => {
+        console.log('Axios Response:', response);
+        return response;
+    },
+    (error) => {
+        console.error('Axios Response Error:', error);
+        console.error('Error details:', {
+            message: error.message,
+            code: error.code,
+            config: error.config,
+            response: error.response
+        });
+        return Promise.reject(error);
+    }
+);
 
 export default function Information() {
     const { user, updateUser, loading: authLoading } = useAuth();
@@ -11,7 +41,8 @@ export default function Information() {
         userEmail: '',
         name: '',
         phone: '',
-        address: ''
+        address: '',
+        detailAddress: ''
     });
 
     const [passwordData, setPasswordData] = useState({
@@ -22,6 +53,7 @@ export default function Information() {
 
     const [loading, setLoading] = useState(false);
     const [activeTab, setActiveTab] = useState('info'); // 'info' 또는 'password'
+    const [showManualAddressInput, setShowManualAddressInput] = useState(false);
 
     useEffect(() => {
         // useAuth의 loading이 완료된 후 로그인 상태 확인
@@ -35,13 +67,19 @@ export default function Information() {
             // 서버에서 최신 사용자 정보 가져오기
             const fetchUserInfo = async () => {
                 try {
-                    const response = await axios.get('/api/auth/me', { withCredentials: true });
+                    const response = await axios.get('http://localhost:8080/api/auth/me', {
+                        withCredentials: true,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
                     if (response.data.status === 'OK' && response.data.userData) {
                         setUserInfo({
                             userEmail: response.data.userData.userEmail || '',
                             name: response.data.userData.name || '',
                             phone: response.data.userData.phone || '',
-                            address: response.data.userData.address || ''
+                            address: response.data.userData.address || '',
+                            detailAddress: response.data.userData.detailAddress || ''
                         });
                     } else {
                         // userData가 없으면 기본값 설정
@@ -49,7 +87,8 @@ export default function Information() {
                             userEmail: response.data.userEmail || '',
                             name: '',
                             phone: '',
-                            address: ''
+                            address: '',
+                            detailAddress: ''
                         });
                     }
                 } catch (error) {
@@ -59,7 +98,8 @@ export default function Information() {
                         userEmail: user.userEmail || '',
                         name: '',
                         phone: '',
-                        address: ''
+                        address: '',
+                        detailAddress: ''
                     });
                 }
             };
@@ -67,6 +107,14 @@ export default function Information() {
             fetchUserInfo();
         }
     }, [user, authLoading, navigate]);
+
+    const handleAddressSelect = (addressData) => {
+        setUserInfo({
+            ...userInfo,
+            address: addressData.address
+        });
+        setShowManualAddressInput(false);
+    };
 
     const handleInfoSubmit = async (e) => {
         e.preventDefault();
@@ -77,10 +125,17 @@ export default function Information() {
                 userEmail: userInfo.userEmail,
                 name: userInfo.name?.trim() || '',
                 phone: userInfo.phone?.trim() || '',
-                address: userInfo.address?.trim() || ''
+                address: userInfo.address?.trim() || '',
+                detailAddress: userInfo.detailAddress?.trim() || ''
             };
 
-            const response = await axios.put('/api/auth/update', updateData, { withCredentials: true });
+            console.log('업데이트 요청 데이터:', updateData);
+            const response = await axios.put('http://localhost:8080/api/auth/update', updateData, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
 
             if (response.data.status === 'OK') {
@@ -92,7 +147,8 @@ export default function Information() {
                         userEmail: response.data.data.userEmail,
                         name: response.data.data.name || '',
                         phone: response.data.data.phone || '',
-                        address: response.data.data.address || ''
+                        address: response.data.data.address || '',
+                        detailAddress: response.data.data.detailAddress || ''
                     });
                     updateUser(response.data.data); // useAuth의 사용자 정보 업데이트
                 }
@@ -119,10 +175,15 @@ export default function Information() {
         setLoading(true);
 
         try {
-            const response = await axios.put('/api/auth/update-password', {
+            const response = await axios.put('http://localhost:8080/api/auth/update-password', {
                 currentPassword: passwordData.currentPassword,
                 newPassword: passwordData.newPassword
-            }, { withCredentials: true });
+            }, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
             if (response.data.status === 'OK') {
                 alert('비밀번호가 성공적으로 변경되었습니다.');
@@ -216,12 +277,61 @@ export default function Information() {
 
                             <div className="md:col-span-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">주소</label>
-                                <input
-                                    type="text"
-                                    value={userInfo.address}
-                                    onChange={(e) => setUserInfo({...userInfo, address: e.target.value})}
-                                    className="w-full px-4 py-3 bg-gray-100 border-0 rounded-xl shadow-[inset_4px_4px_8px_rgba(207,212,222,0.5),inset_-4px_-4px_8px_rgba(255,255,255,0.9)] focus:outline-none focus:shadow-[inset_6px_6px_12px_rgba(207,212,222,0.5),inset_-6px_-6px_12px_rgba(255,255,255,0.9)]"
-                                />
+                                <div className="space-y-3">
+                                    <div className="flex gap-2 items-center">
+                                        <div className="flex-1">
+                                            {!showManualAddressInput && (
+                                                <AddressSearch
+                                                    onAddressSelect={handleAddressSelect}
+                                                    placeholder={userInfo.address || "주소를 검색하려면 클릭하세요"}
+                                                />
+                                            )}
+
+                                            {showManualAddressInput && (
+                                                <input
+                                                    type="text"
+                                                    value={userInfo.address}
+                                                    onChange={(e) => setUserInfo({...userInfo, address: e.target.value})}
+                                                    className="w-full px-4 py-3 bg-gray-100 border-0 rounded-xl shadow-[inset_4px_4px_8px_rgba(207,212,222,0.5),inset_-4px_-4px_8px_rgba(255,255,255,0.9)] focus:outline-none focus:shadow-[inset_6px_6px_12px_rgba(207,212,222,0.5),inset_-6px_-6px_12px_rgba(255,255,255,0.9)]"
+                                                    placeholder="주소를 직접 입력하세요"
+                                                />
+                                            )}
+                                        </div>
+
+                                        {/* 주소 지우기 토글 버튼 */}
+                                        {userInfo.address && (
+                                            <button
+                                                type="button"
+                                                onClick={() => setUserInfo({...userInfo, address: '', detailAddress: ''})}
+                                                className="px-3 py-3 bg-red-100 text-red-600 hover:bg-red-200 hover:text-red-800 rounded-xl shadow-[4px_4px_8px_rgba(207,212,222,0.5),-4px_-4px_8px_rgba(255,255,255,0.9)] hover:shadow-[2px_2px_4px_rgba(207,212,222,0.5),-2px_-2px_4px_rgba(255,255,255,0.9)] transition-all duration-300 flex items-center justify-center"
+                                                title="주소 지우기"
+                                            >
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                            </button>
+                                        )}
+                                    </div>
+
+                                    {/* 상세주소 입력 필드 */}
+                                    <input
+                                        type="text"
+                                        value={userInfo.detailAddress}
+                                        onChange={(e) => setUserInfo({...userInfo, detailAddress: e.target.value})}
+                                        className="w-full px-4 py-3 bg-gray-100 border-0 rounded-xl shadow-[inset_4px_4px_8px_rgba(207,212,222,0.5),inset_-4px_-4px_8px_rgba(255,255,255,0.9)] focus:outline-none focus:shadow-[inset_6px_6px_12px_rgba(207,212,222,0.5),inset_-6px_-6px_12px_rgba(255,255,255,0.9)]"
+                                        placeholder="상세주소 (동/호수, 건물명 등)"
+                                    />
+
+                                    <div className="flex gap-2 text-sm">
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowManualAddressInput(!showManualAddressInput)}
+                                            className="text-blue-600 hover:text-blue-800 transition-colors duration-300"
+                                        >
+                                            {showManualAddressInput ? '주소 검색으로 변경' : '직접 입력으로 변경'}
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

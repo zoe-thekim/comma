@@ -17,4 +17,5 @@ public class UsersDTO {
     private String name;
     private String phone;
     private String address;
+    private String detailAddress;
 }

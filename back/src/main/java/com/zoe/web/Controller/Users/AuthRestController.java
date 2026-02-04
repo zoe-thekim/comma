@@ -113,6 +113,7 @@ public class AuthRestController {
             userData.setName(currentUser.getName());
             userData.setPhone(currentUser.getPhone());
             userData.setAddress(currentUser.getAddress());
+            userData.setDetailAddress(currentUser.getDetailAddress());
 
             log.info("GetUserSession - Email: " + userEmail + ", UserNo: " + userNo);
 

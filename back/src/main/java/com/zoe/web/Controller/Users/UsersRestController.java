@@ -37,17 +37,17 @@ public class UsersRestController {
         try {
             // 업데이트 전 현재 정보 확인
             Users currentUser = usersService.findByUserEmail(userEmail);
-            log.info("현재 사용자 정보 - 이름: {}, 전화번호: {}, 주소: {}",
-                    currentUser.getName(), currentUser.getPhone(), currentUser.getAddress());
+            log.info("현재 사용자 정보 - 이름: {}, 전화번호: {}, 주소: {}, 상세주소: {}",
+                    currentUser.getName(), currentUser.getPhone(), currentUser.getAddress(), currentUser.getDetailAddress());
 
             // 사용자 정보 업데이트
             Users updatedUser = usersService.updateUserInfo(userEmail, request);
 
             // 업데이트 후 검증
             Users verificationUser = usersService.findByUserEmail(userEmail);
-            log.info("업데이트 후 사용자 정보 - 이름: {}, 전화번호: {}, 주소: {}, 수정시간: {}",
+            log.info("업데이트 후 사용자 정보 - 이름: {}, 전화번호: {}, 주소: {}, 상세주소: {}, 수정시간: {}",
                     verificationUser.getName(), verificationUser.getPhone(), verificationUser.getAddress(),
-                    verificationUser.getUpdateDt());
+                    verificationUser.getDetailAddress(), verificationUser.getUpdateDt());
 
             // 응답용 DTO 생성
             UsersDTO responseData = new UsersDTO();
@@ -55,6 +55,7 @@ public class UsersRestController {
             responseData.setName(verificationUser.getName());
             responseData.setPhone(verificationUser.getPhone());
             responseData.setAddress(verificationUser.getAddress());
+            responseData.setDetailAddress(verificationUser.getDetailAddress());
 
             log.info("사용자 정보 업데이트 API 응답 성공 - 이메일: {}", userEmail);
 

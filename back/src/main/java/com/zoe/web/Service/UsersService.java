@@ -26,14 +26,15 @@ public class UsersService {
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
 
         log.info("사용자 정보 업데이트 시작 - 이메일: {}", userEmail);
-        log.info("요청 데이터 - 이름: {}, 전화번호: {}, 주소: {}",
-                updateRequest.getName(), updateRequest.getPhone(), updateRequest.getAddress());
+        log.info("요청 데이터 - 이름: {}, 전화번호: {}, 주소: {}, 상세주소: {}",
+                updateRequest.getName(), updateRequest.getPhone(), updateRequest.getAddress(), updateRequest.getDetailAddress());
 
         boolean hasChanges = false;
 
         String newName = updateRequest.getName() != null ? updateRequest.getName().trim() : null;
         String newPhone = updateRequest.getPhone() != null ? updateRequest.getPhone().trim() : null;
         String newAddress = updateRequest.getAddress() != null ? updateRequest.getAddress().trim() : null;
+        String newDetailAddress = updateRequest.getDetailAddress() != null ? updateRequest.getDetailAddress().trim() : null;
 
         if (newName != null && !newName.equals(existingUser.getName())) {
             log.info("이름 변경: {} -> {}", existingUser.getName(), newName);
@@ -50,6 +51,12 @@ public class UsersService {
         if (newAddress != null && !newAddress.equals(existingUser.getAddress())) {
             log.info("주소 변경: {} -> {}", existingUser.getAddress(), newAddress);
             existingUser.setAddress(newAddress.isEmpty() ? null : newAddress);
+            hasChanges = true;
+        }
+
+        if (newDetailAddress != null && !newDetailAddress.equals(existingUser.getDetailAddress())) {
+            log.info("상세주소 변경: {} -> {}", existingUser.getDetailAddress(), newDetailAddress);
+            existingUser.setDetailAddress(newDetailAddress.isEmpty() ? null : newDetailAddress);
             hasChanges = true;
         }
 

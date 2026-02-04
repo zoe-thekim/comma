@@ -17,6 +17,11 @@ export default function Header(){
                 <div className="flex items-center space-x-8">
                     <ul className="flex items-center space-x-6">
                         <li>
+                            <a href="/item/list" className="py-2 px-3 text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                                상품
+                            </a>
+                        </li>
+                        <li>
                             <a href="#" className="py-2 px-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
                                 About
                             </a>
@@ -24,11 +29,6 @@ export default function Header(){
                         <li>
                             <a href="#" className="py-2 px-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
                                 Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="py-2 px-3 text-gray-700 hover:text-blue-600 transition-colors duration-200">
-                                Pricing
                             </a>
                         </li>
                         <li>

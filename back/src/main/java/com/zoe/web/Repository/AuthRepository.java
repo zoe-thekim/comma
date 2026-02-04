@@ -18,11 +18,12 @@ public interface AuthRepository extends JpaRepository<Users, Integer> {
 
     // 사용자 정보 업데이트를 위한 커스텀 쿼리
     @Modifying
-    @Query("UPDATE Users u SET u.name = :name, u.phone = :phone, u.address = :address WHERE u.userEmail = :userEmail")
+    @Query("UPDATE Users u SET u.name = :name, u.phone = :phone, u.address = :address, u.detailAddress = :detailAddress WHERE u.userEmail = :userEmail")
     int updateUserInfo(@Param("userEmail") String userEmail,
                        @Param("name") String name,
                        @Param("phone") String phone,
-                       @Param("address") String address);
+                       @Param("address") String address,
+                       @Param("detailAddress") String detailAddress);
 
     // 비밀번호 업데이트를 위한 커스텀 쿼리
     @Modifying

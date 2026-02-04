@@ -10,6 +10,8 @@ import Login from "./users/Login";
 import Join from "./users/Join";
 import Success from "./users/Success";
 import Information from "./users/Information";
+import ItemList from "./item/ItemList";
+import ItemDetail from "./item/ItemDetail";
 
 class App extends Component {
     render() {
@@ -30,6 +32,9 @@ class App extends Component {
                                 <Route path="/users/information" element={<Information />} />
                                 <Route path="/users/google" element={<Navigate to="/member/google" replace />} />
 
+                                {/* 상품 관련 라우트 */}
+                                <Route path="/item/list" element={<ItemList />} />
+                                <Route path="/item/detail/:id" element={<ItemDetail />} />
 
                                 {/* 호환용(대문자로 접근해도 소문자로 리다이렉트) */}
                                 <Route path="/users/Login" element={<Navigate to="/users/Login" replace />} />

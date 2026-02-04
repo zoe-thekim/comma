@@ -3,7 +3,10 @@
     "allow": [
       "Bash(./gradlew:*)",
       "Bash(chmod:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(lsof:*)",
+      "WebFetch(domain:www.ikea.com)",
+      "Bash(PORT=3001 npm start)"
     ],
     "deny": [],
     "ask": []

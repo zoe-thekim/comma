@@ -52,6 +52,9 @@ public class Users {
     @Column(name = "address", length = 500)
     private String address;
 
+    @Column(name = "detail_address", length = 255)
+    private String detailAddress;
+
     // 생성 시간
     @CreationTimestamp
     @Column(name = "create_dt", nullable = false, updatable = false)
