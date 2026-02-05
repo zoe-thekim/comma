@@ -10,8 +10,9 @@ import Login from "./users/Login";
 import Join from "./users/Join";
 import Success from "./users/Success";
 import Information from "./users/Information";
-import ItemList from "./item/ItemList";
-import ItemDetail from "./item/ItemDetail";
+import ProductCategories from "./product/ProductCategories";
+import ProductList from "./product/ProductList";
+import ProductDetail from "./product/ProductDetail";
 
 class App extends Component {
     render() {
@@ -33,8 +34,13 @@ class App extends Component {
                                 <Route path="/users/google" element={<Navigate to="/member/google" replace />} />
 
                                 {/* 상품 관련 라우트 */}
-                                <Route path="/item/list" element={<ItemList />} />
-                                <Route path="/item/detail/:id" element={<ItemDetail />} />
+                                <Route path="/product" element={<ProductCategories />} />
+                                <Route path="/product/list" element={<ProductList />} />
+                                <Route path="/product/detail/:id" element={<ProductDetail />} />
+
+                                {/* 이전 item 라우트 호환용 */}
+                                <Route path="/item/list" element={<Navigate to="/product/list" replace />} />
+                                <Route path="/item/detail/:id" element={<Navigate to={`/product/detail/${window.location.pathname.split('/')[3]}`} replace />} />
 
                                 {/* 호환용(대문자로 접근해도 소문자로 리다이렉트) */}
                                 <Route path="/users/Login" element={<Navigate to="/users/Login" replace />} />

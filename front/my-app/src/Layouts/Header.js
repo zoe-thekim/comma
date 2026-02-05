@@ -17,8 +17,8 @@ export default function Header(){
                 <div className="flex items-center space-x-8">
                     <ul className="flex items-center space-x-6">
                         <li>
-                            <a href="/item/list" className="py-2 px-3 text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
-                                상품
+                            <a href="/product" className="py-2 px-3 text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                                Products
                             </a>
                         </li>
                         <li>
@@ -73,7 +73,22 @@ export default function Header(){
                         ) : (
                             <a
                                 href="/users/Login"
-                                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                                className="bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-sm shadow-neumorphism hover:shadow-neumorphism-hover active:shadow-neumorphism-active transition-all duration-200 font-medium"
+                                style={{
+                                    boxShadow: '6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.boxShadow = '4px 4px 8px #c5c5c5, -4px -4px 8px #ffffff';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.boxShadow = '6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff';
+                                }}
+                                onMouseDown={(e) => {
+                                    e.target.style.boxShadow = 'inset 4px 4px 8px #c5c5c5, inset -4px -4px 8px #ffffff';
+                                }}
+                                onMouseUp={(e) => {
+                                    e.target.style.boxShadow = '4px 4px 8px #c5c5c5, -4px -4px 8px #ffffff';
+                                }}
                             >
                                 LOGIN
                             </a>
